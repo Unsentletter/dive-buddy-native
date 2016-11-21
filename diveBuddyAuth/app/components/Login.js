@@ -71,7 +71,7 @@ var Login = React.createClass({
 
           <View style={styles.field}>
             <TextInput
-            {...email}
+              {...email}
               placeholder="email@gmail.com"
               style={styles.textInput}
               autoCorrect={false}
