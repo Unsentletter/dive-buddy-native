@@ -16,6 +16,14 @@ var userSchema = new Schema({
   },
   password: {
     type: String
+  },
+  profile: {
+    username: {
+      type: String,
+      unique: true
+    },
+    numberOfDives: String,
+    diverDescription: String
   }
 });
 

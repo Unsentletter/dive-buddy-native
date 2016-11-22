@@ -8,6 +8,7 @@ import {
 
 import Login from './Login';
 import Main from './Main';
+import CreateProfile from './CreateProfile';
 import AlertContainer from './alerts/AlertContainer';
 import {Header} from './common';
 
@@ -18,9 +19,16 @@ var App = React.createClass({
   render() {
     var renderMainView = () => {
       if (this.props.user_id) {
-        return (
-          <Main />
-        );
+
+        if (this.props.profile){
+          return (
+            <CreateProfile />
+          );
+        } else{
+          return (
+            <Main />
+          );
+        }
       } else {
         return (
           <Login />
@@ -46,7 +54,8 @@ const styles = StyleSheet.create({
 
 var mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user_id
+    user_id: state.auth.user_id,
+    profile: state.auth.profile
   }
 }
 

@@ -18,7 +18,7 @@ class diveBuddyAuth extends Component {
   render() {
     return (
       <Provider store={configureStore()}>
-        <CreateProfile />
+        <App />
       </Provider>
     );
   }

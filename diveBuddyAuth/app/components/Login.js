@@ -62,7 +62,7 @@ var Login = React.createClass({
     if (this.state.loading) {
       return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          Loading
+          <Text>Loading</Text>
         </View>
       )
     } else {
