@@ -18,12 +18,18 @@ import {
 import {createProfile, unauthUser} from '../actions';
 
 var CreateProfile = React.createClass({
+  getInitialState: function() {
+    return {
+      loading: false
+    }
+  },
+
   profileCreator: function() {
-    var {dispatch, fields: {username, numberOfDives, diverDescription, user_id}} = this.props;
+    var {dispatch, user_id, fields: {diverUsername, numberOfDives, diverDescription}} = this.props;
       this.setState({
         loading: true
       });
-    dispatch(createProfile(username.value, numberOfDives.value, diverDescription.value, user_id.value)).then(() => {
+    dispatch(createProfile(diverUsername.value, numberOfDives.value, diverDescription.value, user_id)).then(() => {
       this.setState({
         loading: false
       });
@@ -34,13 +40,13 @@ var CreateProfile = React.createClass({
   },
 
   render() {
-    var {fields: {username, numberOfDives, diverDescription}} = this.props;
+    var {fields: {diverUsername, numberOfDives, diverDescription}} = this.props;
 
     return (
       <Card>
           <View style={styles.field}>
             <TextInput
-              {...username}
+              {...diverUsername}
               placeholder="Username"
               style={styles.textInput}
             />
@@ -63,7 +69,7 @@ var CreateProfile = React.createClass({
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={this.createProfile}>
+          <TouchableOpacity onPress={this.profileCreator}>
             <Text style={styles.button}>
               Create Profile
             </Text>
@@ -101,7 +107,13 @@ const styles = StyleSheet.create({
   },
 })
 
+var mapStateToProps = (state) => {
+  return {
+    user_id: state.auth.user_id
+  }
+}
+
 module.exports = reduxForm({
   form: 'CreateProfile',
-  fields: ['username', 'numberOfDives', 'diverDescription']
-}, null, null)(CreateProfile);
+  fields: ['diverUsername', 'numberOfDives', 'diverDescription']
+}, mapStateToProps)(CreateProfile);

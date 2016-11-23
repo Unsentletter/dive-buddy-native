@@ -1,23 +1,40 @@
 import axios from 'axios';
+import Keychain from 'react-native-keychain';
 
-import {CREATE_URL} from '../api';
+import {CREATE_URL, SIGNIN_URL} from '../api';
+import {addAlert} from './alertsActions';
 
-exports.createProfile = (username, numberOfDives, diverDescription, user_id) => {
+exports.createProfile = (diverUsername, numberOfDives, diverDescription, user_id) => {
   return function(dispatch) {
-    return axios.post(CREATE_URL.replace(":user_id", user_id), {username, numberOfDives, diverDescription}).then((response) => {
-      var {username, numberOfDives, diverDescription} = response.data;
-      dispatch(profileCreator(username, numberOfDives, diverDescription));
-    }).catch((error) => {
-      dispatch(addAlert("Could not update profile"));
-    });
+    console.log(CREATE_URL);
+    console.log(SIGNIN_URL);
+
+    return Keychain.getGenericPassword().then((credentials) => {
+      var { username, password } = credentials;
+      console.log(credentials);
+      console.log(user_id);
+      return axios.post(CREATE_URL.replace(":user_id", user_id), {diverUsername, numberOfDives, diverDescription, user_id}, {
+        headers: {authorization: password}
+      }).then((response) => {
+        dispatch(profileCreator(response.data.profile));
+      }).catch((error) => {
+        dispatch(addAlert("Could not update profile"));
+        console.log(error);
+      })
+    })
   }
 }
 
-profileCreator = (username, numberOfDives, diverDescription) => {
+exports.getProfile = function(dispatch) {
+  return Keychain.getGenericPassword().then((credentials) => {
+    var {username, password} = credentials;
+    return axios.get()
+  })
+}
+
+profileCreator = (newProfile) => {
   return {
     type: 'CREATE_PROFILE',
-    username,
-    numberOfDives,
-    diverDescription
+    newProfile
   }
 }

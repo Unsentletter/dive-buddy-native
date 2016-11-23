@@ -18,7 +18,7 @@ var userSchema = new Schema({
     type: String
   },
   profile: {
-    username: {
+      diverUsername: {
       type: String,
       unique: true
     },

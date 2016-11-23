@@ -16,7 +16,9 @@ router.route('/signin')
 
 //createProfile routes
 router.route('/users/:user_id/createprofile')
-  .post(CreateProfileController.create);
+  .post(requireAuth, CreateProfileController.create);
+router.route('/users/:user_id/profile')
+  .get(CreateProfileController.index);
 
 
 

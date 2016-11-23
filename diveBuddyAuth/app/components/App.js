@@ -9,6 +9,7 @@ import {
 import Login from './Login';
 import Main from './Main';
 import CreateProfile from './CreateProfile';
+import Profile from './Profile';
 import AlertContainer from './alerts/AlertContainer';
 import {Header} from './common';
 
@@ -19,14 +20,13 @@ var App = React.createClass({
   render() {
     var renderMainView = () => {
       if (this.props.user_id) {
-
         if (this.props.profile){
           return (
-            <CreateProfile />
+            <Profile />
           );
         } else{
           return (
-            <Main />
+            <Profile />
           );
         }
       } else {

@@ -1,5 +1,5 @@
 var defaultState = {
-  username: undefined,
+  diverUsername: undefined,
   numberOfDives: undefined,
   diverDescription: undefined
 }
@@ -7,11 +7,10 @@ var defaultState = {
 module.exports = (state=defaultState, action) => {
   switch(action.type) {
     case 'CREATE_PROFILE':
-      return {
-        username: action.username,
-        numberOfDives: action.numberOfDives,
-        diverDescription: action.diverDescription
-      }
+      return [
+        ...state,
+        action.newProfile
+      ];
 
     default:
       return state;

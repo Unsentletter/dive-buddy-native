@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import {
   StyleSheet,
@@ -24,17 +24,19 @@ var Login = React.createClass({
       loading: false
     }
   },
+
   onSignIn: function() {
     var {dispatch, fields: {email, password}} = this.props;
-      this.setState({
-        loading: true
-      });
+    this.setState({
+      loading: true
+    });
     dispatch(loginUser(email.value, password.value)).then(() => {
       this.setState({
         loading: false
       });
     })
   },
+
   onSignUp: function() {
     var {dispatch, fields: {email, password}} = this.props;
       this.setState({
@@ -46,6 +48,7 @@ var Login = React.createClass({
       });
     });
   },
+
   render() {
     var {fields: {email, password}} = this.props;
 
