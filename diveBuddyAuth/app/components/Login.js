@@ -16,7 +16,7 @@ import {
   CardSection
 } from './common';
 
-import {loginUser, signupUser, addAlert} from '../actions';
+import {loginUser, signupUser, addAlert, getProfile} from '../actions';
 
 var Login = React.createClass({
   getInitialState: function() {

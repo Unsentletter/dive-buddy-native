@@ -14,31 +14,35 @@ import {
   CardSection
 } from './common';
 
-import {unauthUser} from '../actions';
+import {unauthUser, getProfile} from '../actions';
 
-var Main = React.createClass({
+var Profile = React.createClass({
   onLogout: function() {
     this.props.dispatch(unauthUser);
   },
 
   render() {
+    var diverUsername = this.props.profile.diverUsername
+    console.log(diverUsername);
+    var numberOfDives = this.props.profile.numberOfDives
+    var diverDescription = this.props.profile.diverDescription
     return (
       <Card>
         <CardSection>
           <Text>
-            text
+            {diverUsername}
           </Text>
         </CardSection>
 
         <CardSection>
           <Text>
-            text
+            {numberOfDives}
           </Text>
         </CardSection>
 
         <CardSection>
           <Text>
-            text
+            {diverDescription}
           </Text>
         </CardSection>
 
@@ -55,4 +59,10 @@ var Main = React.createClass({
 const styles = StyleSheet.create({
 });
 
-module.exports= connect()(Main);
+var mapStateToProps = (state) => {
+  return {
+    profile: state.auth.profile
+  }
+}
+
+module.exports= connect(mapStateToProps)(Profile);

@@ -32,13 +32,11 @@ exports.index = function(req, res) {
   const user_id = req.params.user_id;
 
   User.findById(user_id, function(err,user){
-    console.log("User: ", user.profile.diverUsername)
-    res.json({
+    res.json({profile:{
       username: user.profile.diverUsername,
       numberOfDives: user.profile.numberOfDives,
       diverDescription: user.profile.diverDescription
-    })
-
+    }})
   })
 
 }

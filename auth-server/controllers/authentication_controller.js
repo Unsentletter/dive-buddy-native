@@ -12,7 +12,7 @@ function tokenForUser(user) {
 
 exports.signin = function(req, res, next) {
   var user = req.user;
-  res.send({token: tokenForUser(user), user_id: user._id, profile: user.profile != undefined});
+  res.send({token: tokenForUser(user), user_id: user._id, profile: user.profile});
 }
 
 exports.signup = function(req, res, next) {
@@ -31,7 +31,7 @@ exports.signup = function(req, res, next) {
     });
     user.save(function(err) {
       if (err) { return next(err) }
-      res.json({user: user._id, token: tokenForUser(user), profile: user.profile != undefined});
+      res.json({user: user._id, token: tokenForUser(user), profile: user.profile});
     });
   });
 }
