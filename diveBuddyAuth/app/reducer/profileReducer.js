@@ -1,7 +1,7 @@
 var defaultState = {
   profile: {}
 }
-
+ 
 module.exports = (state=defaultState, action) => {
   switch(action.type) {
     case 'CREATE_PROFILE':

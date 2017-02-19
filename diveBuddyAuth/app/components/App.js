@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import Login from './Login';
-import MapView from './MapView';
+import Location from './Location';
 import Main from './Main';
 import CreateProfile from './CreateProfile';
 import Profile from './Profile';
@@ -18,17 +18,17 @@ var App = React.createClass({
   getInitialState() {
     return{}
   },
-  render() {
-    console.log("props: ", this.props);
+	render() {
+		console.log("props: ", this.props);
     var renderMainView = () => {
       if (this.props.user_id) {
         if (this.props.profile){
           return (
-            <MapView />
+            <Location />
           );
         } else{
           return (
-            <MapView />
+            <Location />
           );
         }
       } else {
