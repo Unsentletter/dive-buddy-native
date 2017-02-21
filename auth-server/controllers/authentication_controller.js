@@ -21,7 +21,7 @@ exports.signup = function(req, res, next) {
   if (!email || !password) {
     return res.status(422).json({error: "You must provide an email and password"});
   }
-
+  // Check if user already exists, send error if they do, create new user if they do
   User.findOne({email: email}, function(err, existingUser) {
     if (err) { return next(err) }
     if (existingUser) {return res.status(422).json({error: "Email taken"})}
