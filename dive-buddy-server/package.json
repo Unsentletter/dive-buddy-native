@@ -1,7 +1,6 @@
 {
   "name": "dive-buddy-server",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +8,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.1",
-    "lodash": "^4.17.4"
-  }
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.9.6",
+    "validator": "^7.0.0"
+  },
+  "devDependencies": {},
+  "description": ""
 }
